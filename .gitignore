@@ -20,3 +20,17 @@ tmp
 *.o
 *.a
 mkmf.log
+
+# Standard NIfTI C Library
+nifti1_test
+nifti_stats
+nifti_tool
+*.mk
+dbh.h
+fslio.h
+nifti1.h
+nifti1_io.h
+nifticdf.h
+znzlib.h
+
+ext/nifticlib/Makefile
