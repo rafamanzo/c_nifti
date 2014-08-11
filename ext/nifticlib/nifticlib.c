@@ -40,6 +40,7 @@ nifti_image * to_nifti_image(VALUE rb_nifti_image){
 }
 
 VALUE voxel_data_to_value(nifti_image *img, int index){
+  // Types nifti1.h
   switch(img->datatype){
     case DT_BINARY:
       if (((bool *) img->data)[index]){
@@ -51,6 +52,8 @@ VALUE voxel_data_to_value(nifti_image *img, int index){
       return rb_sprintf("%u", ((unsigned char *) img->data)[index]);
     case DT_SIGNED_SHORT:
       return INT2NUM((int) ((short *) img->data)[index]);
+    case DT_SIGNED_INT:
+      return INT2NUM(((int *) img->data)[index]);
     case DT_FLOAT:
       return rb_float_new((double) ((float *) img->data)[index]);
     default:
