@@ -49,6 +49,8 @@ VALUE voxel_data_to_value(nifti_image *img, int index){
       }
     case DT_UNSIGNED_CHAR:
       return rb_sprintf("%u", ((unsigned char *) img->data)[index]);
+    case DT_SIGNED_SHORT:
+      return INT2NUM((int) ((short *) img->data)[index]);
     case DT_FLOAT:
       return rb_float_new((double) ((float *) img->data)[index]);
     default:
