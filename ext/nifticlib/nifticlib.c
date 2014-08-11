@@ -1,4 +1,5 @@
 #include <ruby.h> // Ruby C extensions
+#include <stdbool.h> // Boolean type handling
 #include <nifti1_io.h> // standard NIfTI C library
 
 // DATA types
@@ -40,6 +41,14 @@ nifti_image * to_nifti_image(VALUE rb_nifti_image){
 
 VALUE voxel_data_to_value(nifti_image *img, int index){
   switch(img->datatype){
+    case DT_BINARY:
+      if (((bool *) img->data)[index]){
+        return Qtrue;
+      }else{
+        return Qfalse;
+      }
+    case DT_UNSIGNED_CHAR:
+      return rb_sprintf("%u", ((unsigned char *) img->data)[index]);
     case DT_FLOAT:
       return rb_float_new((double) ((float *) img->data)[index]);
     default:
