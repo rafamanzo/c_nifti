@@ -92,6 +92,12 @@ static VALUE nifti_image_data(VALUE self){
   return rb_data;
 }
 
+static VALUE nifti_image_ndim(VALUE self){
+  nifti_image *img = to_nifti_image(self);
+
+  return INT2NUM(img->ndim);
+}
+
 /********/
 /* Init */
 /********/
@@ -107,6 +113,7 @@ void Init_nifticlib(void){
   rb_define_singleton_method(mNIfTICLib, "read", nifti_image_read_wrapper, 1);
 
   // NIfTIImage methods
+  rb_define_method(cNIfTIImage, "ndim", nifti_image_ndim, 0);
   rb_define_method(cNIfTIImage, "data", nifti_image_data, 0);
   rb_define_method(cNIfTIImage, "nvox", nifti_image_nvox, 0);
 }
