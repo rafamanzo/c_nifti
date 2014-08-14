@@ -1,6 +1,6 @@
 #include <ruby.h> // Ruby C extensions
-#include <stdbool.h> // Boolean type handling
 #include <nifti1_io.h> // standard NIfTI C library
+#include <stdbool.h> // Boolean type handling
 
 // DATA types
 VALUE mNIfTICLib;
@@ -42,7 +42,7 @@ nifti_image * to_nifti_image(VALUE rb_nifti_image){
 VALUE voxel_data_to_value(nifti_image *img, int index){
   // Types nifti1.h
   switch(img->datatype){
-    case DT_BINARY:
+    case DT_BINARY: // DT_UINT8
       if (((bool *) img->data)[index]){
         return Qtrue;
       }else{
@@ -50,13 +50,27 @@ VALUE voxel_data_to_value(nifti_image *img, int index){
       }
     case DT_UNSIGNED_CHAR:
       return rb_sprintf("%u", ((unsigned char *) img->data)[index]);
-    case DT_SIGNED_SHORT:
+    case DT_SIGNED_SHORT: // DT_INT16
       return INT2NUM((int) ((short *) img->data)[index]);
-    case DT_SIGNED_INT:
+    case DT_SIGNED_INT: // DT_INT32
       return INT2NUM(((int *) img->data)[index]);
-    case DT_FLOAT:
+    case DT_FLOAT: // DT_FLOAT32
       return rb_float_new((double) ((float *) img->data)[index]);
-    default:
+    case DT_DOUBLE: // DT_FLOAT64
+      return rb_float_new(((double *) img->data)[index]);
+    case DT_INT8:
+      return rb_sprintf("%c", ((char *) img->data)[index]);
+    case DT_UINT16:
+      return INT2NUM((int) ((unsigned short *) img->data)[index]);
+    case DT_UINT32:
+      return INT2NUM((int) ((unsigned int *) img->data)[index]);
+    case DT_INT64:
+      return INT2NUM((int) ((long long *) img->data)[index]);
+    case DT_UINT64:
+      return INT2NUM((int) ((unsigned long long *) img->data)[index]);
+    case DT_FLOAT128:
+      return rb_float_new(((double) ((long double *) img->data)[index]));
+    default: // Unsupported types: DT_COMPLEX, DT_RGB, DT_ALL, DT_COMPLEX128, DT_COMPLEX256, DT_RGBA32
       return Qnil;
   }
 }
