@@ -34,3 +34,4 @@ nifticdf.h
 znzlib.h
 
 ext/nifticlib/Makefile
+*.rej
