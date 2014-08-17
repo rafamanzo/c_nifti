@@ -4,6 +4,7 @@
 #include <nifti_image.h>
 #include <nifti_image_converters.h>
 #include <nifti_image_dimensions.h>
+#include <nifti_image_spacings.h>
 
 VALUE nifti_image_data(VALUE self){
   int i = 0;
@@ -19,10 +20,9 @@ VALUE nifti_image_data(VALUE self){
 }
 
 VALUE init_nifti_image(VALUE module){
-  // NIfTICLib classes
   VALUE cNIfTIImage = rb_define_class_under(module, "NIfTIImage", rb_cObject);
 
-  // NIfTIImage methods
+  // Dimension methods
   rb_define_method(cNIfTIImage, "ndim", nifti_image_ndim, 0);
   rb_define_method(cNIfTIImage, "nx", nifti_image_nx, 0);
   rb_define_method(cNIfTIImage, "ny", nifti_image_ny, 0);
@@ -35,6 +35,18 @@ VALUE init_nifti_image(VALUE module){
   rb_define_method(cNIfTIImage, "nvox", nifti_image_nvox, 0);
   rb_define_method(cNIfTIImage, "nbyper", nifti_image_nbyper, 0);
   rb_define_method(cNIfTIImage, "datatype", nifti_image_datatype, 0);
+
+  // Spacing methods
+  rb_define_method(cNIfTIImage, "dx", nifti_image_dx, 0);
+  rb_define_method(cNIfTIImage, "dy", nifti_image_dy, 0);
+  rb_define_method(cNIfTIImage, "dz", nifti_image_dz, 0);
+  rb_define_method(cNIfTIImage, "dt", nifti_image_dt, 0);
+  rb_define_method(cNIfTIImage, "du", nifti_image_du, 0);
+  rb_define_method(cNIfTIImage, "dv", nifti_image_dv, 0);
+  rb_define_method(cNIfTIImage, "dw", nifti_image_dw, 0);
+  rb_define_method(cNIfTIImage, "pixdim", nifti_image_pixdim, 0);
+
+  // Data methods
   rb_define_method(cNIfTIImage, "data", nifti_image_data, 0);
 
   return cNIfTIImage;

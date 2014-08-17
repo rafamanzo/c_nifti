@@ -18,6 +18,7 @@ find_header('nifti1_io.h', "#{File.dirname(__FILE__)}/nifticlib-2.0.0/include")
 find_header('nifti_image.h', "#{File.dirname(__FILE__)}/include")
 find_header('nifti_image_converters.h', "#{File.dirname(__FILE__)}/include")
 find_header('nifti_image_dimensions.h', "#{File.dirname(__FILE__)}/include")
+find_header('nifti_image_spacings.h', "#{File.dirname(__FILE__)}/include")
 
 $LIBS << " -lznz" # For some reason znz is not linked without this
 
