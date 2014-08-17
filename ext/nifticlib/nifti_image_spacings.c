@@ -58,3 +58,15 @@ VALUE nifti_image_pixdim(VALUE self){
 
   return rb_data;
 }
+
+VALUE nifti_image_qform_code(VALUE self){
+  nifti_image *img = to_nifti_image(self);
+
+  return INT2NUM(img->qform_code);
+}
+
+VALUE nifti_image_sform_code(VALUE self){
+  nifti_image *img = to_nifti_image(self);
+
+  return INT2NUM(img->sform_code);
+}
