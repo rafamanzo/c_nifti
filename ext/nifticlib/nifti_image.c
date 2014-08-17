@@ -6,6 +6,26 @@
 #include <nifti_image_dimensions.h>
 #include <nifti_image_spacings.h>
 
+/************/
+/* Scaliing */
+/************/
+
+VALUE nifti_image_scl_slope(VALUE self){
+  nifti_image *img = to_nifti_image(self);
+
+  return rb_float_new((double) img->scl_slope);
+}
+
+VALUE nifti_image_scl_inter(VALUE self){
+  nifti_image *img = to_nifti_image(self);
+
+  return rb_float_new((double) img->scl_inter);
+}
+
+/********/
+/* Data */
+/********/
+
 VALUE nifti_image_data(VALUE self){
   int i = 0;
   nifti_image *img = to_nifti_image(self);
@@ -18,6 +38,10 @@ VALUE nifti_image_data(VALUE self){
 
   return rb_data;
 }
+
+/********/
+/* Init */
+/********/
 
 VALUE init_nifti_image(VALUE module){
   VALUE cNIfTIImage = rb_define_class_under(module, "NIfTIImage", rb_cObject);
@@ -45,6 +69,10 @@ VALUE init_nifti_image(VALUE module){
   rb_define_method(cNIfTIImage, "dv", nifti_image_dv, 0);
   rb_define_method(cNIfTIImage, "dw", nifti_image_dw, 0);
   rb_define_method(cNIfTIImage, "pixdim", nifti_image_pixdim, 0);
+
+  //Scaling methods
+  rb_define_method(cNIfTIImage, "scl_slope", nifti_image_scl_slope, 0);
+  rb_define_method(cNIfTIImage, "scl_inter", nifti_image_scl_inter, 0);
 
   // Data methods
   rb_define_method(cNIfTIImage, "data", nifti_image_data, 0);
