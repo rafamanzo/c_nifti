@@ -74,3 +74,9 @@ VALUE nifti_image_nbyper(VALUE self){
 
   return INT2NUM(img->nbyper);
 }
+
+VALUE nifti_image_datatype(VALUE self){
+  nifti_image *img = to_nifti_image(self);
+
+  return INT2NUM(img->datatype);
+}

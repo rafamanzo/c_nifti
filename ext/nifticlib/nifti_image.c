@@ -34,6 +34,7 @@ VALUE init_nifti_image(VALUE module){
   rb_define_method(cNIfTIImage, "dim", nifti_image_dim, 0);
   rb_define_method(cNIfTIImage, "nvox", nifti_image_nvox, 0);
   rb_define_method(cNIfTIImage, "nbyper", nifti_image_nbyper, 0);
+  rb_define_method(cNIfTIImage, "datatype", nifti_image_datatype, 0);
   rb_define_method(cNIfTIImage, "data", nifti_image_data, 0);
 
   return cNIfTIImage;
