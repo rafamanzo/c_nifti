@@ -68,3 +68,9 @@ VALUE nifti_image_dim(VALUE self){
 
   return rb_data;
 }
+
+VALUE nifti_image_nbyper(VALUE self){
+  nifti_image *img = to_nifti_image(self);
+
+  return INT2NUM(img->nbyper);
+}

@@ -8,3 +8,4 @@ VALUE nifti_image_nu(VALUE self);
 VALUE nifti_image_nv(VALUE self);
 VALUE nifti_image_nw(VALUE self);
 VALUE nifti_image_dim(VALUE self);
+VALUE nifti_image_nbyper(VALUE self);
