@@ -1,7 +1,6 @@
 #include <ruby.h> // Ruby C extensions
 #include <nifti1_io.h> // standard NIfTI C library
 
-#include <nifti_image_converters.h>
 #include <nifti_image.h>
 
 // DATA types
