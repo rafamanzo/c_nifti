@@ -1,12 +1,3 @@
-VALUE nifti_image_ndim(VALUE self);
-VALUE nifti_image_ndim(VALUE self);
-VALUE nifti_image_nvox(VALUE self);
+
 VALUE nifti_image_data(VALUE self);
-VALUE nifti_image_nx(VALUE self);
-VALUE nifti_image_ny(VALUE self);
-VALUE nifti_image_nz(VALUE self);
-VALUE nifti_image_nt(VALUE self);
-VALUE nifti_image_nu(VALUE self);
-VALUE nifti_image_nv(VALUE self);
-VALUE nifti_image_nw(VALUE self);
 VALUE init_nifti_image(VALUE module);
