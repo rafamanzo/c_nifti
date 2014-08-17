@@ -55,3 +55,16 @@ VALUE nifti_image_nw(VALUE self){
 
   return INT2NUM(img->nw);
 }
+
+VALUE nifti_image_dim(VALUE self){
+  int i = 0;
+  nifti_image *img = to_nifti_image(self);
+
+  VALUE rb_data = rb_ary_new2(img->nvox);
+
+  for(i = 0; i < 8; i++){
+    rb_ary_store(rb_data, i, INT2NUM(img->dim[i]));
+  }
+
+  return rb_data;
+}
