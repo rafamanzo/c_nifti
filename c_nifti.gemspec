@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = CNifti::VERSION
   spec.authors       = ["Rafael Reggiani Manzo"]
   spec.email         = ["rr.manzo@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = "NIfTI 1 and ANALYZE 7.5 medical image formats IO"
+  spec.description   = "CNifti is a wrapper for the standard C NIfTI 1 library found at http://afni.nimh.nih.gov/pub/dist/src/nifti/"
+  spec.homepage      = "https://github.com/rafamanzo/c_nifti"
   spec.license       = "LGPLv3"
 
   spec.files         = `git ls-files -z`.split("\x0")
