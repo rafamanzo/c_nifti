@@ -49,7 +49,33 @@ Or install it yourself as  (not working before release):
     img.cal_max
     img.qform_code
     img.sform_code
+    img.freq_dim
+    img.phase_dim
+    img.slice_dim
+    img.slice_code
+    img.slice_start
+    img.slice_end
+    img.slice_duration
+    img.quatern_b
+    img.quatern_c
+    img.quatern_d
+    img.qoffset_x
+    img.qoffset_y
+    img.qoffset_z
+    img.qfac
+    img.qto_xyz
+    img.qto_ijk
+    img.sto_xyz
+    img.sto_ijk
     img.data # returns the data into a unidimensional array
+
+### Not supported data types
+* DT_COMPLEX
+* DT_RGB
+* DT_ALL
+* DT_COMPLEX128
+* DT_COMPLEX256
+* DT_RGBA32
 
 ## Contributing
 
