@@ -45,3 +45,15 @@ VALUE nifti_image_slice_duration(VALUE self){
 
   return rb_float_new((double) img->slice_duration);
 }
+
+VALUE nifti_image_timings_init(VALUE klass){
+  rb_define_method(klass, "freq_dim", nifti_image_freq_dim, 0);
+  rb_define_method(klass, "phase_dim", nifti_image_phase_dim, 0);
+  rb_define_method(klass, "slice_dim", nifti_image_slice_dim, 0);
+  rb_define_method(klass, "slice_code", nifti_image_slice_code, 0);
+  rb_define_method(klass, "slice_start", nifti_image_slice_start, 0);
+  rb_define_method(klass, "slice_end", nifti_image_slice_end, 0);
+  rb_define_method(klass, "slice_duration", nifti_image_slice_duration, 0);
+
+  return klass;
+}

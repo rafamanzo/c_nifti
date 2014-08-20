@@ -80,22 +80,16 @@ VALUE init_nifti_image(VALUE module){
   rb_define_method(cNIfTIImage, "cal_max", nifti_image_cal_max, 0);
 
   // Timing methods
-  rb_define_method(cNIfTIImage, "freq_dim", nifti_image_freq_dim, 0);
-  rb_define_method(cNIfTIImage, "phase_dim", nifti_image_phase_dim, 0);
-  rb_define_method(cNIfTIImage, "slice_dim", nifti_image_slice_dim, 0);
-  rb_define_method(cNIfTIImage, "slice_code", nifti_image_slice_code, 0);
-  rb_define_method(cNIfTIImage, "slice_start", nifti_image_slice_start, 0);
-  rb_define_method(cNIfTIImage, "slice_end", nifti_image_slice_end, 0);
-  rb_define_method(cNIfTIImage, "slice_duration", nifti_image_slice_duration, 0);
+  cNIfTIImage = nifti_image_timings_init(cNIfTIImage);
 
   // Quaternion methods
-  rb_define_method(cNIfTIImage, "quatern_b", nifti_image_freq_dim, 0);
-  rb_define_method(cNIfTIImage, "quatern_c", nifti_image_freq_dim, 0);
-  rb_define_method(cNIfTIImage, "quatern_d", nifti_image_freq_dim, 0);
-  rb_define_method(cNIfTIImage, "qoffset_x", nifti_image_freq_dim, 0);
-  rb_define_method(cNIfTIImage, "qoffset_y", nifti_image_freq_dim, 0);
-  rb_define_method(cNIfTIImage, "qoffset_z", nifti_image_freq_dim, 0);
-  rb_define_method(cNIfTIImage, "qfac", nifti_image_freq_dim, 0);
+  rb_define_method(cNIfTIImage, "quatern_b", nifti_image_quatern_b, 0);
+  rb_define_method(cNIfTIImage, "quatern_c", nifti_image_quatern_c, 0);
+  rb_define_method(cNIfTIImage, "quatern_d", nifti_image_quatern_d, 0);
+  rb_define_method(cNIfTIImage, "qoffset_x", nifti_image_qoffset_x, 0);
+  rb_define_method(cNIfTIImage, "qoffset_y", nifti_image_qoffset_y, 0);
+  rb_define_method(cNIfTIImage, "qoffset_z", nifti_image_qoffset_z, 0);
+  rb_define_method(cNIfTIImage, "qfac", nifti_image_qfac, 0);
 
   // Transform methods
   rb_define_method(cNIfTIImage, "qto_xyz", nifti_image_qto_xyz, 0);
