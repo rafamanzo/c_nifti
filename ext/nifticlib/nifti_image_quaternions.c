@@ -45,3 +45,15 @@ VALUE nifti_image_qfac(VALUE self){
 
   return rb_float_new((double) img->qfac);
 }
+
+VALUE nifti_image_quaternions_init(VALUE klass){
+  rb_define_method(klass, "quatern_b", nifti_image_quatern_b, 0);
+  rb_define_method(klass, "quatern_c", nifti_image_quatern_c, 0);
+  rb_define_method(klass, "quatern_d", nifti_image_quatern_d, 0);
+  rb_define_method(klass, "qoffset_x", nifti_image_qoffset_x, 0);
+  rb_define_method(klass, "qoffset_y", nifti_image_qoffset_y, 0);
+  rb_define_method(klass, "qoffset_z", nifti_image_qoffset_z, 0);
+  rb_define_method(klass, "qfac", nifti_image_qfac, 0);
+
+  return klass;
+}
