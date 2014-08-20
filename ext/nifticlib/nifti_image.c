@@ -66,18 +66,7 @@ VALUE init_nifti_image(VALUE module){
   VALUE cNIfTIImage = rb_define_class_under(module, "NIfTIImage", rb_cObject);
 
   // Dimension methods
-  rb_define_method(cNIfTIImage, "ndim", nifti_image_ndim, 0);
-  rb_define_method(cNIfTIImage, "nx", nifti_image_nx, 0);
-  rb_define_method(cNIfTIImage, "ny", nifti_image_ny, 0);
-  rb_define_method(cNIfTIImage, "nz", nifti_image_nz, 0);
-  rb_define_method(cNIfTIImage, "nt", nifti_image_nt, 0);
-  rb_define_method(cNIfTIImage, "nu", nifti_image_nu, 0);
-  rb_define_method(cNIfTIImage, "nv", nifti_image_nv, 0);
-  rb_define_method(cNIfTIImage, "nw", nifti_image_nw, 0);
-  rb_define_method(cNIfTIImage, "dim", nifti_image_dim, 0);
-  rb_define_method(cNIfTIImage, "nvox", nifti_image_nvox, 0);
-  rb_define_method(cNIfTIImage, "nbyper", nifti_image_nbyper, 0);
-  rb_define_method(cNIfTIImage, "datatype", nifti_image_datatype, 0);
+  cNIfTIImage = nifti_image_dimensions_init(cNIfTIImage);
 
   // Spacing methods
   rb_define_method(cNIfTIImage, "dx", nifti_image_dx, 0);
