@@ -70,3 +70,18 @@ VALUE nifti_image_sform_code(VALUE self){
 
   return INT2NUM(img->sform_code);
 }
+
+VALUE nifti_image_spacings_init(VALUE klass){
+  rb_define_method(klass, "dx", nifti_image_dx, 0);
+  rb_define_method(klass, "dy", nifti_image_dy, 0);
+  rb_define_method(klass, "dz", nifti_image_dz, 0);
+  rb_define_method(klass, "dt", nifti_image_dt, 0);
+  rb_define_method(klass, "du", nifti_image_du, 0);
+  rb_define_method(klass, "dv", nifti_image_dv, 0);
+  rb_define_method(klass, "dw", nifti_image_dw, 0);
+  rb_define_method(klass, "pixdim", nifti_image_pixdim, 0);
+  rb_define_method(klass, "qform_code", nifti_image_qform_code, 0);
+  rb_define_method(klass, "sform_code", nifti_image_sform_code, 0);
+
+  return klass;
+}

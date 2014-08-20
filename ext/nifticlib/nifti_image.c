@@ -69,16 +69,7 @@ VALUE init_nifti_image(VALUE module){
   cNIfTIImage = nifti_image_dimensions_init(cNIfTIImage);
 
   // Spacing methods
-  rb_define_method(cNIfTIImage, "dx", nifti_image_dx, 0);
-  rb_define_method(cNIfTIImage, "dy", nifti_image_dy, 0);
-  rb_define_method(cNIfTIImage, "dz", nifti_image_dz, 0);
-  rb_define_method(cNIfTIImage, "dt", nifti_image_dt, 0);
-  rb_define_method(cNIfTIImage, "du", nifti_image_du, 0);
-  rb_define_method(cNIfTIImage, "dv", nifti_image_dv, 0);
-  rb_define_method(cNIfTIImage, "dw", nifti_image_dw, 0);
-  rb_define_method(cNIfTIImage, "pixdim", nifti_image_pixdim, 0);
-  rb_define_method(cNIfTIImage, "qform_code", nifti_image_qform_code, 0);
-  rb_define_method(cNIfTIImage, "sform_code", nifti_image_sform_code, 0);
+  cNIfTIImage = nifti_image_spacings_init(cNIfTIImage);
 
   //Scaling methods
   rb_define_method(cNIfTIImage, "scl_slope", nifti_image_scl_slope, 0);
