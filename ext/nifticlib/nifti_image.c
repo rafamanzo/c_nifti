@@ -5,6 +5,7 @@
 #include <nifti_image_converters.h>
 #include <nifti_image_dimensions.h>
 #include <nifti_image_spacings.h>
+#include <nifti_image_timings.h>
 
 /***********/
 /* Scaling */
@@ -95,6 +96,15 @@ VALUE init_nifti_image(VALUE module){
   //Calibration methods
   rb_define_method(cNIfTIImage, "cal_min", nifti_image_cal_min, 0);
   rb_define_method(cNIfTIImage, "cal_max", nifti_image_cal_max, 0);
+
+  // Timing methods
+  rb_define_method(cNIfTIImage, "freq_dim", nifti_image_freq_dim, 0);
+  rb_define_method(cNIfTIImage, "phase_dim", nifti_image_phase_dim, 0);
+  rb_define_method(cNIfTIImage, "slice_dim", nifti_image_slice_dim, 0);
+  rb_define_method(cNIfTIImage, "slice_code", nifti_image_slice_code, 0);
+  rb_define_method(cNIfTIImage, "slice_start", nifti_image_slice_start, 0);
+  rb_define_method(cNIfTIImage, "slice_end", nifti_image_slice_end, 0);
+  rb_define_method(cNIfTIImage, "slice_duration", nifti_image_slice_duration, 0);
 
   // Data methods
   rb_define_method(cNIfTIImage, "data", nifti_image_data, 0);
