@@ -24,7 +24,7 @@ RANLIB  = ranlib
 DEPENDFLAGS	=	-MM
 GNU_ANSI_FLAGS	= 	-Wall -ansi -pedantic
 ANSI_FLAGS	= 	${GNU_ANSI_FLAGS}
-CFLAGS		=	$(ANSI_FLAGS)
+CFLAGS		=	$(ANSI_FLAGS) -fPIC
 
 ## Command defines
 ## gmake does not work on MacOSX or some versions of linux MAKE  = gmake 
