@@ -6,6 +6,8 @@
 #include <nifti_image_dimensions.h>
 #include <nifti_image_spacings.h>
 #include <nifti_image_timings.h>
+#include <nifti_image_quaternions.h>
+#include <nifti_image_transforms.h>
 
 /***********/
 /* Scaling */
@@ -114,6 +116,12 @@ VALUE init_nifti_image(VALUE module){
   rb_define_method(cNIfTIImage, "qoffset_y", nifti_image_freq_dim, 0);
   rb_define_method(cNIfTIImage, "qoffset_z", nifti_image_freq_dim, 0);
   rb_define_method(cNIfTIImage, "qfac", nifti_image_freq_dim, 0);
+
+  // Transform methods
+  rb_define_method(cNIfTIImage, "qto_xyz", nifti_image_qto_xyz, 0);
+  rb_define_method(cNIfTIImage, "qto_ijk", nifti_image_qto_ijk, 0);
+  rb_define_method(cNIfTIImage, "sto_xyz", nifti_image_sto_xyz, 0);
+  rb_define_method(cNIfTIImage, "sto_ijk", nifti_image_sto_ijk, 0);
 
   // Data methods
   rb_define_method(cNIfTIImage, "data", nifti_image_data, 0);

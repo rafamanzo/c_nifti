@@ -46,3 +46,20 @@ VALUE voxel_data_to_value(nifti_image *img, int index){
       return Qnil;
   }
 }
+
+VALUE mat44_to_rb_array(mat44 matrix){
+  VALUE rb_data = rb_ary_new2(4);
+  int x, y;
+
+  for(x = 0; x < 4; x++){
+    VALUE line = rb_ary_new2(4);
+
+    for(y = 0; y < 4; y++){
+      rb_ary_store(line, y, rb_float_new((double) matrix.m[x][y]));
+    }
+
+    rb_ary_store(rb_data, x, line);
+  }
+
+  return rb_data;
+}
