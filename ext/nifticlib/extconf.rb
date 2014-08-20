@@ -20,6 +20,7 @@ find_header('nifti_image_converters.h', "#{File.dirname(__FILE__)}/include")
 find_header('nifti_image_dimensions.h', "#{File.dirname(__FILE__)}/include")
 find_header('nifti_image_spacings.h', "#{File.dirname(__FILE__)}/include")
 find_header('nifti_image_timings.h', "#{File.dirname(__FILE__)}/include")
+find_header('nifti_image_quaternions.h', "#{File.dirname(__FILE__)}/include")
 
 $LIBS << " -lznz" # For some reason znz is not linked without this
 

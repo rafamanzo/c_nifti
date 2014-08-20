@@ -106,6 +106,15 @@ VALUE init_nifti_image(VALUE module){
   rb_define_method(cNIfTIImage, "slice_end", nifti_image_slice_end, 0);
   rb_define_method(cNIfTIImage, "slice_duration", nifti_image_slice_duration, 0);
 
+  // Quaternion methods
+  rb_define_method(cNIfTIImage, "quatern_b", nifti_image_freq_dim, 0);
+  rb_define_method(cNIfTIImage, "quatern_c", nifti_image_freq_dim, 0);
+  rb_define_method(cNIfTIImage, "quatern_d", nifti_image_freq_dim, 0);
+  rb_define_method(cNIfTIImage, "qoffset_x", nifti_image_freq_dim, 0);
+  rb_define_method(cNIfTIImage, "qoffset_y", nifti_image_freq_dim, 0);
+  rb_define_method(cNIfTIImage, "qoffset_z", nifti_image_freq_dim, 0);
+  rb_define_method(cNIfTIImage, "qfac", nifti_image_freq_dim, 0);
+
   // Data methods
   rb_define_method(cNIfTIImage, "data", nifti_image_data, 0);
 
