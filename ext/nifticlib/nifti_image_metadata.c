@@ -4,6 +4,12 @@
 #include <nifti_image_converters.h>
 #include <nifti_image_intents.h>
 
+#define MAX(a,b) (((a)>(b))?(a):(b))
+
+/***********/
+/* Getters */
+/***********/
+
 VALUE nifti_image_descrip(VALUE self){
   nifti_image *img = to_nifti_image(self);
 
@@ -52,6 +58,23 @@ VALUE nifti_image_analyze75_orient(VALUE self){
   return INT2NUM((int) img->analyze75_orient);
 }
 
+/***********/
+/* Setters */
+/***********/
+
+VALUE nifti_image_set_descrip(VALUE self, VALUE r_value){
+  nifti_image *img = to_nifti_image(self);
+  StringValue(r_value);
+  char *value = StringValuePtr(r_value);
+  int i = 0;
+
+  for(i = 0; i < MAX(80, RSTRING_LEN(r_value)); i++){
+    img->descrip[i] = value[i];
+  }
+
+  return nifti_image_descrip(self);
+}
+
 VALUE nifti_image_metadata_init(VALUE klass){
   rb_define_method(klass, "descrip", nifti_image_descrip, 0);
   rb_define_method(klass, "aux_file", nifti_image_aux_file, 0);
@@ -61,6 +84,8 @@ VALUE nifti_image_metadata_init(VALUE klass){
   rb_define_method(klass, "swapsize", nifti_image_swapsize, 0);
   rb_define_method(klass, "byteorder", nifti_image_byteorder, 0);
   rb_define_method(klass, "analyze75_orient", nifti_image_analyze75_orient, 0);
+
+  rb_define_method(klass, "descrip=", nifti_image_set_descrip, 1);
 
   return klass;
 }

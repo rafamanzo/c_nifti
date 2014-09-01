@@ -83,8 +83,12 @@ Or install it yourself as  (not working before release):
     img.iname_offset
     img.swapsize
     img.byteorder
-    img.analyze75_orient
     img.data # returns the data into a unidimensional array
+    img.analyze75_orient
+
+    img.descrip = "description"
+
+    NIfTICLib.write("out_#{image_path})
 
 ### Not supported data types
 * DT_COMPLEX
