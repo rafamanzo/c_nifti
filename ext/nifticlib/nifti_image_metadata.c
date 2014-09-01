@@ -64,9 +64,11 @@ VALUE nifti_image_analyze75_orient(VALUE self){
 
 VALUE nifti_image_set_descrip(VALUE self, VALUE r_value){
   nifti_image *img = to_nifti_image(self);
-  StringValue(r_value);
-  char *value = StringValuePtr(r_value);
+  char *value;
   int i = 0;
+
+  StringValue(r_value);
+  value = StringValuePtr(r_value);
 
   for(i = 0; i < MAX(80, RSTRING_LEN(r_value)); i++){
     img->descrip[i] = value[i];
