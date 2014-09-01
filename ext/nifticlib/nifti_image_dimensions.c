@@ -81,6 +81,18 @@ VALUE nifti_image_datatype(VALUE self){
   return INT2NUM(img->datatype);
 }
 
+VALUE nifti_image_xyz_units(VALUE self){
+  nifti_image *img = to_nifti_image(self);
+
+  return INT2NUM(img->xyz_units);
+}
+
+VALUE nifti_image_time_units(VALUE self){
+  nifti_image *img = to_nifti_image(self);
+
+  return INT2NUM(img->time_units);
+}
+
 VALUE nifti_image_dimensions_init(VALUE klass){
   rb_define_method(klass, "ndim", nifti_image_ndim, 0);
   rb_define_method(klass, "nx", nifti_image_nx, 0);
@@ -94,6 +106,8 @@ VALUE nifti_image_dimensions_init(VALUE klass){
   rb_define_method(klass, "nvox", nifti_image_nvox, 0);
   rb_define_method(klass, "nbyper", nifti_image_nbyper, 0);
   rb_define_method(klass, "datatype", nifti_image_datatype, 0);
+  rb_define_method(klass, "xyz_units", nifti_image_xyz_units, 0);
+  rb_define_method(klass, "time_units", nifti_image_time_units, 0);
 
   return klass;
 }
