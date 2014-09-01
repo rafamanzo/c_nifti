@@ -59,6 +59,16 @@ VALUE nifti_image_data(VALUE self){
 }
 
 /********/
+/* Type */
+/********/
+
+VALUE nifti_image_nifti_type(VALUE self){
+  nifti_image *img = to_nifti_image(self);
+
+  return INT2NUM(img->nifti_type);
+}
+
+/********/
 /* Init */
 /********/
 
@@ -67,10 +77,10 @@ VALUE init_nifti_image(VALUE module){
 
   cNIfTIImage = nifti_image_dimensions_init(cNIfTIImage);
   cNIfTIImage = nifti_image_spacings_init(cNIfTIImage);
-  //Scaling methods
+  // Scaling methods
   rb_define_method(cNIfTIImage, "scl_slope", nifti_image_scl_slope, 0);
   rb_define_method(cNIfTIImage, "scl_inter", nifti_image_scl_inter, 0);
-  //Calibration methods
+  // Calibration methods
   rb_define_method(cNIfTIImage, "cal_min", nifti_image_cal_min, 0);
   rb_define_method(cNIfTIImage, "cal_max", nifti_image_cal_max, 0);
   cNIfTIImage = nifti_image_timings_init(cNIfTIImage);
@@ -78,6 +88,8 @@ VALUE init_nifti_image(VALUE module){
   cNIfTIImage = nifti_image_transforms_init(cNIfTIImage);
   // Data methods
   rb_define_method(cNIfTIImage, "data", nifti_image_data, 0);
+  // Type methods
+  rb_define_method(cNIfTIImage, "nifti_type", nifti_image_nifti_type, 0);
 
   return cNIfTIImage;
 }
