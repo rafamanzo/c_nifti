@@ -9,6 +9,7 @@
 #include <nifti_image_quaternions.h>
 #include <nifti_image_transforms.h>
 #include <nifti_image_intents.h>
+#include <nifti_image_metadata.h>
 
 /***********/
 /* Scaling */
@@ -92,6 +93,7 @@ VALUE init_nifti_image(VALUE module){
   // Type methods
   rb_define_method(cNIfTIImage, "nifti_type", nifti_image_nifti_type, 0);
   cNIfTIImage = nifti_image_intents_init(cNIfTIImage);
+  cNIfTIImage = nifti_image_metadata_init(cNIfTIImage);
 
   return cNIfTIImage;
 }
