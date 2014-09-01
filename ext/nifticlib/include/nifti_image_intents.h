@@ -1,0 +1,1 @@
+VALUE nifti_image_intents_init(VALUE klass);
