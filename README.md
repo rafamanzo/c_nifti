@@ -1,6 +1,6 @@
 # CNifti
 
-Currently under development and not realeased yet!
+Currently under development and not realeased yet! But should be ready for reading NIfTI image and header
 
 CNifti is a wrapper for the standard C NIfTI 1 library found at http://afni.nimh.nih.gov/pub/dist/src/nifti/
 
@@ -67,6 +67,23 @@ Or install it yourself as  (not working before release):
     img.qto_ijk
     img.sto_xyz
     img.sto_ijk
+    img.toffset
+    img.xyz_units
+    img.time_units
+    img.nifti_type
+    img.intent_code
+    img.intent_p1
+    img.intent_p2
+    img.intent_p3
+    img.intent_name
+    img.descrip
+    img.aux_file
+    img.fname
+    img.iname
+    img.iname_offset
+    img.swapsize
+    img.byteorder
+    img.analyze75_orient
     img.data # returns the data into a unidimensional array
 
 ### Not supported data types
@@ -76,6 +93,8 @@ Or install it yourself as  (not working before release):
 * DT_COMPLEX128
 * DT_COMPLEX256
 * DT_RGBA32
+
+### NIfTI extensions are not supported
 
 ## Contributing
 
