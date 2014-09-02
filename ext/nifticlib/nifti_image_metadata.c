@@ -77,7 +77,23 @@ VALUE nifti_image_set_descrip(VALUE self, VALUE r_value){
   return nifti_image_descrip(self);
 }
 
+VALUE nifti_image_set_aux_file(VALUE self, VALUE r_value){
+  nifti_image *img = to_nifti_image(self);
+  char *value;
+  int i = 0;
+
+  StringValue(r_value);
+  value = StringValuePtr(r_value);
+
+  for(i = 0; i < MAX(24, RSTRING_LEN(r_value)); i++){
+    img->aux_file[i] = value[i];
+  }
+
+  return nifti_image_aux_file(self);
+}
+
 VALUE nifti_image_metadata_init(VALUE klass){
+  // Getters
   rb_define_method(klass, "descrip", nifti_image_descrip, 0);
   rb_define_method(klass, "aux_file", nifti_image_aux_file, 0);
   rb_define_method(klass, "fname", nifti_image_fname, 0);
@@ -87,7 +103,9 @@ VALUE nifti_image_metadata_init(VALUE klass){
   rb_define_method(klass, "byteorder", nifti_image_byteorder, 0);
   rb_define_method(klass, "analyze75_orient", nifti_image_analyze75_orient, 0);
 
+  // Setters
   rb_define_method(klass, "descrip=", nifti_image_set_descrip, 1);
+  rb_define_method(klass, "aux_file=", nifti_image_set_aux_file, 1);
 
   return klass;
 }
