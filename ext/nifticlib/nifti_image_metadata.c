@@ -104,6 +104,26 @@ VALUE nifti_image_set_filenames(VALUE self, VALUE r_value){
   return r_value;
 }
 
+VALUE nifti_image_set_swapsize(VALUE self, VALUE r_value){
+  nifti_image *img = to_nifti_image(self);
+
+  img->swapsize = FIX2INT(r_value);
+
+  return r_value;
+}
+
+VALUE nifti_image_set_byteorder(VALUE self, VALUE r_value){
+  nifti_image *img = to_nifti_image(self);
+
+  img->byteorder = FIX2INT(r_value);
+
+  return r_value;
+}
+
+/********/
+/* Init */
+/********/
+
 VALUE nifti_image_metadata_init(VALUE klass){
   // Getters
   rb_define_method(klass, "descrip", nifti_image_descrip, 0);
@@ -119,6 +139,8 @@ VALUE nifti_image_metadata_init(VALUE klass){
   rb_define_method(klass, "descrip=", nifti_image_set_descrip, 1);
   rb_define_method(klass, "aux_file=", nifti_image_set_aux_file, 1);
   rb_define_method(klass, "filenames=", nifti_image_set_filenames, 1);
+  rb_define_method(klass, "swapsize=", nifti_image_set_swapsize, 1); //FIXME: not working
+  rb_define_method(klass, "byteorder=", nifti_image_set_byteorder, 1);  //FIXME: not working
 
   return klass;
 }
