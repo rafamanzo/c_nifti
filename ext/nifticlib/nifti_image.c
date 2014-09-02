@@ -123,6 +123,11 @@ VALUE nifti_image_set_data(VALUE self, VALUE r_index, VALUE r_value){
   return r_value;
 }
 
+VALUE nifti_image_get_data(VALUE self, VALUE r_index){
+  nifti_image *img = to_nifti_image(self);
+
+  return voxel_data_to_value(img, NUM2INT(r_index));
+}
 /********/
 /* Type */
 /********/
@@ -154,6 +159,7 @@ VALUE init_nifti_image(VALUE module){
   // Data methods
   rb_define_method(cNIfTIImage, "data", nifti_image_data, 0);
   rb_define_method(cNIfTIImage, "set_data", nifti_image_set_data, 2);
+  rb_define_method(cNIfTIImage, "get_data", nifti_image_get_data, 1);
   // Type methods
   rb_define_method(cNIfTIImage, "nifti_type", nifti_image_nifti_type, 0);
   cNIfTIImage = nifti_image_intents_init(cNIfTIImage);

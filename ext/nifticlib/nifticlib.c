@@ -21,6 +21,9 @@ static VALUE nifti_image_read_wrapper(VALUE self, VALUE rb_input_file_path){
   input_file_path = StringValuePtr(rb_input_file_path);
 
   img = nifti_image_read(input_file_path, 1);
+  if(!img) {
+    rb_raise(rb_eRuntimeError, "Failed to read NIfTI image from '%s'\n", input_file_path);
+  }
 
   rb_img = Data_Wrap_Struct(cNIfTIImage, NULL, nifti_image_free, img);
 
