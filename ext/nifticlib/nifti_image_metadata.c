@@ -107,7 +107,7 @@ VALUE nifti_image_set_filenames(VALUE self, VALUE r_value){
 VALUE nifti_image_set_swapsize(VALUE self, VALUE r_value){
   nifti_image *img = to_nifti_image(self);
 
-  img->swapsize = FIX2INT(r_value);
+  img->swapsize = NUM2INT(r_value);
 
   return r_value;
 }
@@ -115,7 +115,7 @@ VALUE nifti_image_set_swapsize(VALUE self, VALUE r_value){
 VALUE nifti_image_set_byteorder(VALUE self, VALUE r_value){
   nifti_image *img = to_nifti_image(self);
 
-  img->byteorder = FIX2INT(r_value);
+  img->byteorder = NUM2INT(r_value);
 
   return r_value;
 }
