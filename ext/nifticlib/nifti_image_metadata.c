@@ -25,7 +25,11 @@ VALUE nifti_image_aux_file(VALUE self){
 VALUE nifti_image_fname(VALUE self){
   nifti_image *img = to_nifti_image(self);
 
-  return rb_str_new2(img->fname);
+  if(img->fname){
+    return rb_str_new2(img->fname);
+  }else{
+    return Qnil;
+  }
 }
 
 VALUE nifti_image_iname(VALUE self){
