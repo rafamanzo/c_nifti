@@ -1,5 +1,9 @@
-require 'c_nifti/header/datatype'
-
 module CNifti
-  module Header; end
+  class Header
+    include HeaderElement::Metadata
+
+    def initialize(nifti_image)
+      @nifti_image = nifti_image
+    end
+  end
 end
