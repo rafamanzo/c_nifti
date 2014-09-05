@@ -10,7 +10,7 @@ module CNifti
                                               1)                                                           # Always initialize the data
 
       @header = Header.new(nifti_image)
-      #@data = Data.new(nifti_image)
+      @data = Data.new(nifti_image)
     end
   end
 end
