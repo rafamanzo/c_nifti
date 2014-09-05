@@ -21,74 +21,81 @@ Or install it yourself as  (not working before release):
 ## Usage
 
     image_path = "image.nii.gz"
-    img = NIfTICLib.read("#{image_path})
+    img = CNifti::Image.open(image_path)
 
-    img.ndim
-    img.nx
-    img.ny
-    img.nz
-    img.nt
-    img.nu
-    img.nv
-    img.nw
-    img.dim
-    img.nvox
-    img.nbyper
-    img.datatype
-    img.dx
-    img.dy
-    img.dz
-    img.dt
-    img.du
-    img.dv
-    img.dw
-    img.pixdim
-    img.scl_slope
-    img.scl_inter
-    img.cal_min
-    img.cal_max
-    img.qform_code
-    img.sform_code
-    img.freq_dim
-    img.phase_dim
-    img.slice_dim
-    img.slice_code
-    img.slice_start
-    img.slice_end
-    img.slice_duration
-    img.quatern_b
-    img.quatern_c
-    img.quatern_d
-    img.qoffset_x
-    img.qoffset_y
-    img.qoffset_z
-    img.qfac
-    img.qto_xyz
-    img.qto_ijk
-    img.sto_xyz
-    img.sto_ijk
-    img.toffset
-    img.xyz_units
-    img.time_units
-    img.nifti_type
-    img.intent_code
-    img.intent_p1
-    img.intent_p2
-    img.intent_p3
-    img.intent_name
-    img.descrip
-    img.aux_file
-    img.fname
-    img.iname
-    img.iname_offset
-    img.swapsize
-    img.byteorder
-    img.data # returns the data into a unidimensional array
-    img.analyze75_orient
+    img.header.ndim
+    img.header.nx
+    img.header.ny
+    img.header.nz
+    img.header.nt
+    img.header.nu
+    img.header.nv
+    img.header.nw
+    img.header.dim
+    img.header.nvox
+    img.header.nbyper
+    img.header.datatype
+    img.header.dx
+    img.header.dy
+    img.header.dz
+    img.header.dt
+    img.header.du
+    img.header.dv
+    img.header.dw
+    img.header.pixdim
+    img.header.scl_slope
+    img.header.scl_inter
+    img.header.cal_min
+    img.header.cal_max
+    img.header.qform_code
+    img.header.sform_code
+    img.header.freq_dim
+    img.header.phase_dim
+    img.header.slice_dim
+    img.header.slice_code
+    img.header.slice_start
+    img.header.slice_end
+    img.header.slice_duration
+    img.header.quatern_b
+    img.header.quatern_c
+    img.header.quatern_d
+    img.header.qoffset_x
+    img.header.qoffset_y
+    img.header.qoffset_z
+    img.header.qfac
+    img.header.qto_xyz
+    img.header.qto_ijk
+    img.header.sto_xyz
+    img.header.sto_ijk
+    img.header.toffset
+    img.header.xyz_units
+    img.header.time_units
+    img.header.nifti_type
+    img.header.intent_code
+    img.header.intent_p1
+    img.header.intent_p2
+    img.header.intent_p3
+    img.header.intent_name
+    img.header.descrip
+    img.header.aux_file
+    img.header.file_name
+    img.header.image_name
+    img.header.image_name_offset
+    img.header.swapsize
+    img.header.byteorder
+    img.header.analyze75_orient
 
-    img.descrip = "description"
+    img.header.description = "description"
+    img.header.aux_file = "aux_file"
+    img.header.file_name = "new_image.nii.gz" # resets the fname, iname and iname_offset of NIfTI
 
-    NIfTICLib.write("out_#{image_path})
+    img.data.raw # returns the data into a unidimensional array
+    img.data.get_raw(0) # returns the data at index 0 from the unidimensional array
+    img.data.get_raw(0,1) # sets the data at index 0 from the unidimensional array to 1
+    img.data[0][0][0] # Supposing the data has 3 dimensions, returns its value
+    img.data[0][0][0] = 1 # Supposing the data has 3 dimensions, sets its value at position (0,0,0) to 1
+
+    img.save_as("out_#{image_path})
 
 ### Not supported data types
 * DT_COMPLEX
