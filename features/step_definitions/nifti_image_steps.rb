@@ -7,6 +7,7 @@ When(/^I modify the image data at "(.*?)" "(.*?)" "(.*?)" setting it to "(.*?)"$
 end
 
 When(/^I save the image to "(.*?)"$/) do |path|
+  File.delete(path) if File.exists?(path)
   @img.save_as(path)
 end
 

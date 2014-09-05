@@ -21,7 +21,7 @@ describe CNifti::Image do
 
     it 'is expected to read from path and set the header and data' do
       NIfTICLib.expects(:read).with(path).returns(nifti_image)
-      
+
       expect(subject.open(path)).to be_a(CNifti::Image)
     end
   end
@@ -32,8 +32,8 @@ describe CNifti::Image do
 
     it 'is expected to read from path and set the header and data' do
       NIfTICLib.expects(:write).returns(nifti_image)
-      
-      expect(subject.save_as(path)).to be_a(CNifti::Image)
+
+      expect(subject.save_as(path)).to be_truthy
     end
   end
 end

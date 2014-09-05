@@ -1,5 +1,7 @@
 #include <ruby.h> // Ruby C extensions
 #include <nifti1_io.h> // standard NIfTI C library
+#include <string.h>
+#include <stdio.h>
 
 #include <nifti_image.h>
 #include <nifti_image_converters.h>
@@ -31,20 +33,32 @@ static VALUE nifti_image_read_wrapper(VALUE self, VALUE rb_input_file_path){
 }
 
 VALUE nifti_image_write_wrapper(VALUE self, VALUE rb_nifti_image, VALUE rb_output_file_path){
-  VALUE rb_img;
+  VALUE rb_img = Qnil;
   char *output_file_path = NULL;
+  char *original_file_path = NULL;
   nifti_image *img = to_nifti_image(rb_nifti_image);
+  FILE *output_file = NULL;
 
   StringValue(rb_output_file_path);
   output_file_path = StringValuePtr(rb_output_file_path);
+  output_file = fopen(output_file_path, "r");
 
-  nifti_set_filenames(img, output_file_path, 1, 1);
+  if(output_file){
+    rb_raise(rb_eRuntimeError, "File %s already exists", output_file_path);
+    fclose(output_file);
+  }else{
+    original_file_path = malloc(RSTRING_LEN(rb_output_file_path)*sizeof(char));
 
-  nifti_image_write(img);
+    strcpy(original_file_path,img->fname);
+    nifti_set_filenames(img, output_file_path, 1, 1);
 
-  rb_img = Data_Wrap_Struct(cNIfTIImage, NULL, nifti_image_free, img);
+    nifti_image_write(img);
+    nifti_set_filenames(img, original_file_path, 0, 1);
 
-  return rb_img;
+    rb_img = Data_Wrap_Struct(cNIfTIImage, NULL, nifti_image_free, nifti_image_read(output_file_path, 1));
+
+    return rb_img;
+  }
 }
 
 /******************/

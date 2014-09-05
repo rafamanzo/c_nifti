@@ -23,12 +23,9 @@ module CNifti
     end
 
     def save_as(path)
-      @nifti_image = NIfTICLib.write(@nifti_image, path)
+      NIfTICLib.write(@nifti_image, path)
 
-      @header = Header.new(@nifti_image)
-      @data = Data.new(@nifti_image)
-
-      self
+      return true
     end
   end
 end
