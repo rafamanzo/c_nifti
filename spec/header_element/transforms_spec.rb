@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe CNifti::Header do
   let!(:nifti_image) { FactoryGirl.build(:nifti_image) }
   subject { CNifti::Header.new(nifti_image) }

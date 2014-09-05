@@ -7,6 +7,7 @@ module CNifti
     include HeaderElement::Spacings
     include HeaderElement::Timings
     include HeaderElement::Transforms
+    include HeaderElement::Miscellaneous
 
     def initialize(nifti_image)
       @nifti_image = nifti_image

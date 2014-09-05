@@ -43,10 +43,10 @@ Or install it yourself as  (not working before release):
     img.header.dv
     img.header.dw
     img.header.pixdim
-    #img.header.scl_slope
-    #img.header.scl_inter
-    #img.header.cal_min
-    #img.header.cal_max
+    img.header.scl_slope
+    img.header.scl_inter
+    img.header.cal_min
+    img.header.cal_max
     img.header.qform_code
     img.header.sform_code
     img.header.freq_dim
@@ -70,7 +70,7 @@ Or install it yourself as  (not working before release):
     img.header.toffset
     img.header.xyz_units
     img.header.time_units
-    #img.header.nifti_type
+    img.header.nifti_type
     img.header.intent_code
     img.header.intent_p1
     img.header.intent_p2
