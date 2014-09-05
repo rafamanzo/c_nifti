@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "mocha", "~> 1.1.0"
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "factory_girl", "~> 4.4.0"
+  spec.add_development_dependency "cucumber", "~> 1.3.16"
 end
