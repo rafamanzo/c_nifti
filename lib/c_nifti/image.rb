@@ -10,14 +10,14 @@ module CNifti
                                               1)                                                           # Always initialize the data
 
       @header = Header.new(@nifti_image)
-      @data = Data.new(@nifti_image)
+      @data = Data::Base.new(nifti_image: @nifti_image)
     end
 
     def open(path)
       @nifti_image = NIfTICLib.read(path)
 
       @header = Header.new(@nifti_image)
-      @data = Data.new(@nifti_image)
+      @data = Data::Base.new(nifti_image: @nifti_image)
 
       self
     end
