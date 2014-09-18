@@ -47,13 +47,18 @@ VALUE nifti_image_write_wrapper(VALUE self, VALUE rb_nifti_image, VALUE rb_outpu
     rb_raise(rb_eRuntimeError, "File %s already exists", output_file_path);
     fclose(output_file);
   }else{
-    original_file_path = malloc(RSTRING_LEN(rb_output_file_path)*sizeof(char));
+    if (img->fname != NULL && strlen(img->fname)){
+      original_file_path = malloc(RSTRING_LEN(rb_output_file_path)*sizeof(char));
 
-    strcpy(original_file_path,img->fname);
-    nifti_set_filenames(img, output_file_path, 1, 1);
+      strcpy(original_file_path,img->fname);
+      nifti_set_filenames(img, output_file_path, 1, 1);
 
-    nifti_image_write(img);
-    nifti_set_filenames(img, original_file_path, 0, 1);
+      nifti_image_write(img);
+      nifti_set_filenames(img, original_file_path, 0, 1);
+    }else{
+      nifti_set_filenames(img, output_file_path, 1, 1);
+      nifti_image_write(img);
+    }
 
     rb_img = Data_Wrap_Struct(cNIfTIImage, NULL, nifti_image_free, nifti_image_read(output_file_path, 1));
 

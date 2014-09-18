@@ -2,6 +2,10 @@ Given(/^I have opened the image at "(.*?)"$/) do |path|
   @img = CNifti::Image.new.open(path)
 end
 
+Given(/^I have a new image with "(.*?)"x"(.*?)"x"(.*?)" integers$/) do |dimx, dimy, dimz|
+  @img = CNifti::Image.new(dimensions: [dimx.to_i, dimy.to_i, dimz.to_i], datatype: CNifti::HeaderElement::Datatype::UnsignedInt)
+end
+
 When(/^I modify the image data at "(.*?)" "(.*?)" "(.*?)" setting it to "(.*?)"$/) do |x, y, z, value|
   @img.data[x.to_i][y.to_i][z.to_i] = value.to_i
 end
