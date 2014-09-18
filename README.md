@@ -20,6 +20,8 @@ Or install it yourself as  (not working before release):
 
 ## Usage
 
+    img = CNifti::Image.new(dimensions: [3,3,3,6], datatype: CNifti::HeaderElement::Datatype::UnsignedInt)
+
     image_path = "image.nii.gz"
     img = CNifti::Image.open(image_path)
 
